@@ -2,7 +2,7 @@
 
 <% @loans.reverse_each do |t| %>
   <div class="loan">
-    <p><%= image_tag t.loan_request.image.url(:main) %></p>
+    <p><%= image_tag t.loan_request.image_url %></p>
     <p>Your Order Number: <%= t.id %></p>
     <p>Amount You Funded This Order: <%= number_to_currency(t.amount, precision: 0) %></p>
     <p>Borrower: <%= t.loan_request.user.tenant.name %>

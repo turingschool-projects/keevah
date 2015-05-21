@@ -5,15 +5,12 @@ class TenantsController < ApplicationController
   before_action :current_user, only: [:show, :edit, :update]
 
   def index
-    # @tenants = Tenant.all
   end
 
   def new
-    # @tenant = Tenant.new
   end
 
   def create
-    # @tenant = Tenant.new(tenant_params)
     if @tenant.save
       session[:tenant_id] = @tenant.id
       current_user.update_attribute(:tenant_id, @tenant.id)
@@ -25,7 +22,6 @@ class TenantsController < ApplicationController
 
   def show
     @tenant = Tenant.find_by("slug = ?", params[:slug])
-    # @loan_requests = []
   end
 
   def edit
