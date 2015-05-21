@@ -395,3 +395,7 @@ footer {
   transform: scale(1);
   opacity: 1;
 }
+
+.loan_request > p > img {
+  width: 40%;
+}
