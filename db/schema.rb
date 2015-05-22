@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150105225706) do
+ActiveRecord::Schema.define(version: 20150521210609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "categories", force: true do |t|
+  create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
     t.datetime "created_at"
@@ -26,14 +26,14 @@ ActiveRecord::Schema.define(version: 20150105225706) do
 
   add_index "categories", ["slug"], name: "index_categories_on_slug", using: :btree
 
-  create_table "loan_request_categories", force: true do |t|
+  create_table "loan_request_categories", force: :cascade do |t|
     t.integer  "category_id"
     t.integer  "loan_request_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "loan_requests", force: true do |t|
+  create_table "loan_requests", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "title"
     t.text     "description"
@@ -45,14 +45,11 @@ ActiveRecord::Schema.define(version: 20150105225706) do
     t.string   "status",              default: "open"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
     t.string   "blurb"
+    t.string   "image_url",           default: "http://www.kiva.org/img/w632/1847429.jpg"
   end
 
-  create_table "loans", force: true do |t|
+  create_table "loans", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "loan_request_id"
     t.integer  "amount"
@@ -61,13 +58,13 @@ ActiveRecord::Schema.define(version: 20150105225706) do
     t.datetime "updated_at"
   end
 
-  create_table "roles", force: true do |t|
+  create_table "roles", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "tenants", force: true do |t|
+  create_table "tenants", force: :cascade do |t|
     t.string   "name"
     t.string   "slug"
     t.datetime "created_at"
@@ -76,7 +73,7 @@ ActiveRecord::Schema.define(version: 20150105225706) do
     t.string   "blurb"
   end
 
-  create_table "user_roles", force: true do |t|
+  create_table "user_roles", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "role_id"
     t.datetime "created_at"
@@ -86,7 +83,7 @@ ActiveRecord::Schema.define(version: 20150105225706) do
   add_index "user_roles", ["role_id"], name: "index_user_roles_on_role_id", using: :btree
   add_index "user_roles", ["user_id"], name: "index_user_roles_on_user_id", using: :btree
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"

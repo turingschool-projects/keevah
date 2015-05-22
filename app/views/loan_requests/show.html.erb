@@ -2,7 +2,7 @@
 <%= form_tag '/cart', remote: true do %>
 <p>Borrower: <%= @loan_request.user.tenant.name %>
 
-<p><%= image_tag @loan_request.image.url(:main) %>
+<p><%= image_tag @loan_request.image_url %>
 <p class="blurb"><%= @loan_request.blurb %>
 <p><%= @loan_request.description %></p>
   <p>Borrowing Amount: <%= number_to_currency(@loan_request.borrowing_amount, precision: 0) %></p>
