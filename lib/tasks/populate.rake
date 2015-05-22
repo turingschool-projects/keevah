@@ -13,6 +13,7 @@ namespace :db do
 
     Tenant.populate tenant_quantity do |tenant|
       tenant.name = tenant.id.to_s + Faker::Name.name
+      tenant.slug = tenant.name.parameterize
     end
 
     @tenant_count = Tenant.count
@@ -40,6 +41,7 @@ namespace :db do
     Category.populate category_quantity do |category|
       category.name        = Faker::Commerce.department(1, true) + category.id.to_s
       category.description = Faker::Commerce.product_name
+      category.slug        = category.name.parameterize
     end
 
     @category_count = Category.count
@@ -59,8 +61,9 @@ namespace :db do
       loan_request.payments_end_date = rand(100..182).days.from_now
       loan_request.borrowing_amount = rand(50..1000)
       loan_request.amount_funded = rand(1..49)
+      loan_request.status = "open"
 
-      # loan_request.categories << Category.find_by(id: rand(1..@category_count))
+      LoanRequestCategory.create(loan_request_id: loan_request.id, category_id: rand(1..@category_count))
     end
 
     @loan_request_count = LoanRequest.count
