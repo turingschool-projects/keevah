@@ -6,14 +6,11 @@ class LoanRequest < ActiveRecord::Base
   has_many :loan_request_categories
   has_many :categories, through: :loan_request_categories
   has_many :loans
-  has_attached_file :image, styles: { thumb: '100x100>', main: '300x300>' },
-                            default_url: 'missing.png'
 
   validate :ensure_request_date_not_in_past
   validate :ensure_begin_date_is_after_request_date
   validate :ensure_end_date_is_after_begin_date
 
-  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   validates :user_id, presence: true
   validates :title, presence: true
   validates :blurb, presence: true
