@@ -3,11 +3,11 @@ namespace :db do
   task populate: :environment do
     [User, Tenant, Category, LoanRequest, Loan].each(&:delete_all)
 
-    user_quantity         = 10
-    tenant_quantity       = 10
-    category_quantity     = 10
-    loan_request_quantity = 10
-    loan_quantity         = 10
+    user_quantity         = 200_000
+    tenant_quantity       = 30_000
+    category_quantity     = 15
+    loan_request_quantity = 500_000
+    loan_quantity         = 50_000
 
     puts "Creating #{tenant_quantity} tenants"
 
