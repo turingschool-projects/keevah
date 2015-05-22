@@ -14,6 +14,7 @@ namespace :db do
     Tenant.populate tenant_quantity do |tenant|
       tenant.name = tenant.id.to_s + Faker::Name.name
       tenant.slug = tenant.name.parameterize
+      tenant.blurb = Faker::Internet.domain_word
     end
 
     @tenant_count = Tenant.count
@@ -62,6 +63,11 @@ namespace :db do
       loan_request.borrowing_amount = rand(50..1000)
       loan_request.amount_funded = rand(1..49)
       loan_request.status = "open"
+      loan_request.image_url = ["http://www.kiva.org/img/w632/1867090.jpg",
+                                "http://www.kiva.org/img/w632/1876504.jpg",
+                                "http://www.kiva.org/img/w632/1883529.jpg",
+                                "http://www.kiva.org/img/w632/1859815.jpg",
+                                "http://www.kiva.org/img/w632/1847429.jpg"].sample
 
       LoanRequestCategory.create(loan_request_id: loan_request.id, category_id: rand(1..@category_count))
     end
