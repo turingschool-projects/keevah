@@ -21,6 +21,7 @@ gem 'cancancan', '~> 1.9'
 gem 'rails_admin', '~> 0.6.6'
 gem 'sucker_punch', '~> 1.0'
 gem 'skylight', group: :production
+gem 'paperclip'
 
 group :development, :test do
   gem 'simplecov', require: false, group: :test
@@ -35,6 +36,7 @@ group :development, :test do
   gem 'guard-rspec', require: false
   gem 'factory_girl_rails'
   gem 'traceroute'
+  gem 'populator'
 end
 
 group :production, :staging do
