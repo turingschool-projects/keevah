@@ -15,6 +15,7 @@ namespace :db do
       tenant.name = tenant.id.to_s + Faker::Name.name
       tenant.slug = tenant.name.parameterize
       tenant.blurb = Faker::Internet.domain_word
+      tenant.description = Faker::Hacker.say_something_smart
     end
 
     @tenant_count = Tenant.count
@@ -83,6 +84,7 @@ namespace :db do
       loan.user_id = rand(1..@user_count)
       loan.loan_request_id = rand(1..@loan_request_count)
       loan.amount = rand(50..1000)
+      loan.status = ["ordered", "completed", "canceled", "paid"].sample
     end
 
     puts "Loans generated"
