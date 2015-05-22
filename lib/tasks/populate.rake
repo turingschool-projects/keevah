@@ -14,6 +14,7 @@ namespace :db do
     Tenant.populate tenant_quantity do |tenant|
       tenant.name = tenant.id.to_s + Faker::Name.name
       tenant.slug = tenant.name.parameterize
+      tenant.blurb = Faker::Internet.domain_word
     end
 
     @tenant_count = Tenant.count
