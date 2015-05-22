@@ -7,6 +7,7 @@
 
 <p class="cart-button"><%= link_to "Take me to my cart!", cart_path %></p>
 
+<%= will_paginate @loan_requests %>
 <% @loan_requests.each do |loan_request| %>
   <%= form_tag "/cart", remote: true do %>
     <div class="loan_request", id=<%= "loan_request_#{loan_request.id}" %>>
