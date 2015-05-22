@@ -22,6 +22,7 @@ gem 'rails_admin', '~> 0.6.6'
 gem 'sucker_punch', '~> 1.0'
 gem 'skylight', group: :production
 gem 'paperclip'
+gem 'will_paginate'
 
 group :development, :test do
   gem 'simplecov', require: false, group: :test
