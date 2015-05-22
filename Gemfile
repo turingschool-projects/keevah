@@ -35,6 +35,7 @@ group :development, :test do
   gem 'guard-rspec', require: false
   gem 'factory_girl_rails'
   gem 'traceroute'
+  gem 'populator'
 end
 
 group :production, :staging do

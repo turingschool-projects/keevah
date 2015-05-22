@@ -70,7 +70,6 @@ ActiveRecord::Schema.define(version: 20150521210609) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
-    t.string   "blurb"
   end
 
   create_table "user_roles", force: :cascade do |t|
