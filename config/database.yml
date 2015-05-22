@@ -8,4 +8,4 @@ development:
   database: keevah_development
 test:
   <<: *default
-  database: keevah_development
+  database: keevah_test
