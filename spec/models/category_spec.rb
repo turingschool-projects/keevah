@@ -40,6 +40,8 @@ RSpec.describe Category do
                                          status: true, categories: [category])
 
       expect(category.loan_requests).to eq([loan_request1, loan_request])
+
+      expect(category.loan_requests_count).to eq(2)
     end
   end
 

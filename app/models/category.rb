@@ -21,4 +21,8 @@ class Category < ActiveRecord::Base
       errors.add(:name, 'has already been taken')
     end
   end
+
+  def loan_requests_count
+    LoanRequestCategory.where("category_id = ?", self).count
+  end
 end
