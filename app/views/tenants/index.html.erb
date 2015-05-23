@@ -1,11 +1,15 @@
 <h2>Borrowers</h2>
 
-<% @tenants.each do |t| %>
-<div class="borrower">
-  <p class="tenant"><%= link_to "#{t.name}", tenant_path(t.slug) %></p>
-  <p><%= t.blurb %></p>
-  <p><%= link_to "Learn more about this borrower", tenant_path(t.slug) %></p>
+<div class="pagination">
+  <%= will_paginate @tenants %>
+  <% @tenants.each do |t| %>
+    <div class="borrower">
+      <p class="tenant"><%= link_to "#{t.name}", tenant_path(t.slug) %></p>
+      <p><%= t.blurb %></p>
+      <p><%= link_to "Learn more about this borrower", tenant_path(t.slug) %></p>
+    </div>
+
+  <% end %>
 </div>
 
-<% end %>
 <div style="clear:both;"></div>

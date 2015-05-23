@@ -3,13 +3,11 @@ class CategoriesController < ApplicationController
 
   before_action :set_category, only: [:show, :edit, :index]
 
-  # cancan
   def index
-    # @categories = Category.all
   end
 
   def show
-    # @category = Category.find_by(slug: params[:slug])
+    @loan_requests = @category.loan_requests.paginate(page: params[:page], per_page: 30)
   end
 
   private
