@@ -5,6 +5,7 @@ class TenantsController < ApplicationController
   before_action :current_user, only: [:show, :edit, :update]
 
   def index
+    @tenants = Tenant.paginate(page: params[:page], per_page: 30)
   end
 
   def new
