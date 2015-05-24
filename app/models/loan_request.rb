@@ -3,7 +3,7 @@ class LoanRequest < ActiveRecord::Base
   default_scope { order('updated_at DESC') }
   scope :status, -> (status) { where status: status }
 
-  has_many :loan_request_categories
+  has_many :loan_request_categories, dependent: :destroy
   has_many :categories, through: :loan_request_categories
   has_many :loans
 
@@ -22,6 +22,13 @@ class LoanRequest < ActiveRecord::Base
   validates :payments_begin_date, presence: true
   validates :payments_end_date, presence: true
   validates :status, presence: true
+
+  #after_create :touch_category
+  #after_destroy :touch_category
+
+  #def touch_category
+    #categories.each(&:touch)
+  #end
 
   def category_names
     categories.map(&:name)

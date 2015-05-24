@@ -1,5 +1,5 @@
 class Category < ActiveRecord::Base
-  has_many :loan_request_categories
+  has_many :loan_request_categories, dependent: :destroy
   has_many :loan_requests, through: :loan_request_categories
   default_scope { order('updated_at DESC') }
 
