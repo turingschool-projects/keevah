@@ -24,7 +24,7 @@ class Category < ActiveRecord::Base
   end
 
   def loan_requests_count
-    Rails.cache.fetch(self.cache_key) do
+    Rails.cache.fetch("loan_request_count/" + self.cache_key) do
       LoanRequestCategory.where("category_id = ?", self).count
     end
   end
