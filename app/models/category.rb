@@ -1,7 +1,7 @@
 class Category < ActiveRecord::Base
   has_many :loan_request_categories, dependent: :destroy
   has_many :loan_requests, through: :loan_request_categories
-  default_scope { order('updated_at DESC') }
+  default_scope { order("updated_at DESC") }
 
   RESERVED_NAMES = %w(users cart loans loan_requests login logout tenants new
                       categories)
@@ -24,7 +24,7 @@ class Category < ActiveRecord::Base
   end
 
   def loan_requests_count
-    Rails.cache.fetch("loan_request_count/" + self.cache_key) do
+    Rails.cache.fetch("loan_request_count/" + cache_key) do
       LoanRequestCategory.where("category_id = ?", self).count
     end
   end

@@ -5,10 +5,9 @@ class LoanRequestCategory < ActiveRecord::Base
   after_save :clear_matching_caches
 
   def clear_matching_caches
-    redis = Redis.new
-    redis.keys.each do |key|
+    REDIS.keys.each do |key|
       if key.match(/(keevah:loan_request_count\/categories\/).*/)
-        redis.del(key)
+        REDIS.del(key)
       end
     end
   end
