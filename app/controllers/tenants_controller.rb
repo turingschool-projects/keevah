@@ -1,6 +1,8 @@
 class TenantsController < ApplicationController
   load_and_authorize_resource
 
+  rescue_from Mongoid::Errors::NameNotFound, :with => :render_not_found
+
   before_action :set_tenant, only: [:show, :edit, :update, :destroy]
   before_action :current_user, only: [:show, :edit, :update]
 
