@@ -23,6 +23,7 @@ gem 'sucker_punch', '~> 1.0'
 gem 'skylight', group: :production
 gem 'paperclip'
 gem 'will_paginate'
+gem 'redis-rails'
 
 group :development, :test do
   gem 'simplecov', require: false, group: :test
