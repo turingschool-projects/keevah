@@ -10,6 +10,7 @@ module Keevahh
   class Application < Rails::Application
     config.serve_static_files = true
     config.assets.version = '1.1'
+    config.expections_app = self.routes
 
     config.action_mailer.delivery_method = :smtp
 
