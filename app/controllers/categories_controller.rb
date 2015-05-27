@@ -23,6 +23,6 @@ class CategoriesController < ApplicationController
   end
 
   def current_page
-    params[:page]
+    params[:page].to_s
   end
 end
