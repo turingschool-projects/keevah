@@ -9,57 +9,69 @@ Rails.application.configure do
   }
 
   config.cache_store = :dalli_store,
-  (ENV["MEMCACHIER_SERVERS"] || "").split(","),
-  {:username => ENV["MEMCACHIER_USERNAME"],
-   :password => ENV["MEMCACHIER_PASSWORD"],
-   :failover => true,
-   :socket_timeout => 1.5,
-   :socket_failure_delay => 0.2
-  }
+    (ENV["MEMCACHIER_SERVERS"] || "").split(","),
+    {
+      username: ENV["MEMCACHIER_USERNAME"],
+      password: ENV["MEMCACHIER_PASSWORD"],
+      failover: true,
+      socket_timeout: 1.5,
+      socket_failure_delay: 0.2
+    }
 
-  config.cache_classes = true
+    ActionMailer::Base.smtp_settings = {
+      port:           '587',
+      address:        'smtp.mandrillapp.com',
+      user_name:      ENV['MANDRILL_USERNAME'],
+      password:       ENV['MANDRILL_API_KEY'],
+      domain:         'heroku.com',
+      authentication: :plain
+    }
 
-  config.eager_load = true
+    ActionMailer::Base.delivery_method = :smtp
 
-  config.consider_all_requests_local       = false
+    config.cache_classes = true
 
-  config.action_controller.perform_caching = true
+    config.eager_load = true
 
-  config.serve_static_files = true
+    config.consider_all_requests_local       = false
 
-  config.assets.js_compressor = :uglifier
+    config.action_controller.perform_caching = true
 
-  config.assets.compile = true
+    config.serve_static_files = true
 
-  config.assets.digest = true
+    config.assets.js_compressor = :uglifier
 
-  config.log_level = :info
+    config.assets.compile = true
 
-  config.force_ssl = true
+    config.assets.digest = true
 
-  # Prepend all log lines with the following tags.
-  # config.log_tags = [ :subdomain, :uuid ]
+    config.log_level = :info
 
-  # Use a different logger for distributed setups.
-  # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
+    config.force_ssl = true
 
-  # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  # config.action_controller.asset_host = 'http://assets.example.com'
+    # Prepend all log lines with the following tags.
+    # config.log_tags = [ :subdomain, :uuid ]
 
-  # Ignore bad email addresses and do not raise email delivery errors.
-  # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
+    # Use a different logger for distributed setups.
+    # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
-  # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
-  # the I18n.default_locale when a translation cannot be found).
-  config.i18n.fallbacks = true
+    # Enable serving of images, stylesheets, and JavaScripts from an asset server.
+    # config.action_controller.asset_host = 'http://assets.example.com'
 
-  # Send deprecation notices to registered listeners.
-  config.active_support.deprecation = :notify
+    # Ignore bad email addresses and do not raise email delivery errors.
+    # Set this to true and configure the email server for immediate delivery to raise delivery errors.
+    # config.action_mailer.raise_delivery_errors = false
 
-  # Use default logging formatter so that PID and timestamp are not suppressed.
-  config.log_formatter = ::Logger::Formatter.new
+    # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
+    # the I18n.default_locale when a translation cannot be found).
+    config.i18n.fallbacks = true
 
-  # Do not dump schema after migrations.
-  config.active_record.dump_schema_after_migration = false
+    # Send deprecation notices to registered listeners.
+    config.active_support.deprecation = :notify
+
+    # Use default logging formatter so that PID and timestamp are not suppressed.
+    config.log_formatter = ::Logger::Formatter.new
+
+    # Do not dump schema after migrations.
+    config.active_record.dump_schema_after_migration = false
 end

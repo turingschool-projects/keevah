@@ -1,10 +1,10 @@
 class SendEmailJob
-  include SuckerPunch::Job
+  include Sidekiq::Worker
 
-  def perform(current_user, cart_loans_keys, cart_loans_values)
-    LoanMailer.lent_money(current_user, cart_loans_keys, cart_loans_values).deliver_now
+  def perform(user_id, cart_loans_keys, cart_loans_values)
+    LoanMailer.lent_money(user_id, cart_loans_keys, cart_loans_values).deliver_now
     cart_loans_keys.each_with_index do |loan_request_id, index|
-      LoanMailer.received_money(current_user, loan_request_id, cart_loans_values[index]).deliver_now
+      LoanMailer.received_money(user_id, loan_request_id, cart_loans_values[index]).deliver_now
     end
   end
 end

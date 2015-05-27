@@ -5,3 +5,4 @@ coverage
 .env
 .bundle/
 public/system/
+*.rdb
