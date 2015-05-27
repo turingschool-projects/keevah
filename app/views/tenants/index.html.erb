@@ -2,13 +2,14 @@
 
 <div class="pagination">
   <%= will_paginate @tenants %>
-  <% @tenants.each do |t| %>
-    <div class="borrower">
-      <p class="tenant"><%= link_to "#{t.name}", tenant_path(t.slug) %></p>
-      <p><%= t.blurb %></p>
-      <p><%= link_to "Learn more about this borrower", tenant_path(t.slug) %></p>
-    </div>
-
+  <% @tenants.each do |tenant| %>
+    <% cache tenant do %>
+      <div class="borrower">
+        <p class="tenant"><%= link_to "#{tenant.name}", tenant_path(tenant.slug) %></p>
+        <p><%= tenant.blurb %></p>
+        <p><%= link_to "Learn more about this borrower", tenant_path(tenant.slug) %></p>
+      </div>
+    <% end %>
   <% end %>
 </div>
 
