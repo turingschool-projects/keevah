@@ -3,7 +3,7 @@ class LoanRequestsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @loan_requests = LoanRequest.paginate(page: params[:page], per_page: 30)
+    @loan_requests = LoanRequest.paginate(page: params[:page], per_page: 6)
     @loan_requests = @loan_requests.status(params[:status]) if params[:status].present?
   end
 
