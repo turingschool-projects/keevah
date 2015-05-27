@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :reload_rails_admin, if: :rails_admin_path?
 
-  helper_method :current_user, :current_tenant
+  helper_method :current_user, :current_tenant, :current_page
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, notice: 'Access Denied'
@@ -17,6 +17,10 @@ class ApplicationController < ActionController::Base
 
   def current_tenant
     @current_tenant ||= Tenant.find(session[:tenant_id]) if session[:tenant_id]
+  end
+
+  def current_page
+    params[:page] || 1
   end
 
   private
