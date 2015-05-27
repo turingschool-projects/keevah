@@ -19,7 +19,6 @@ gem 'faker'
 gem 'bcrypt', '~> 3.1.7'
 gem 'cancancan', '~> 1.9'
 gem 'rails_admin', '~> 0.6.6'
-gem 'sucker_punch', '~> 1.0'
 gem 'skylight', group: :production
 gem 'paperclip'
 gem 'will_paginate'
