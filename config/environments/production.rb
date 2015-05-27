@@ -10,20 +10,21 @@ Rails.application.configure do
 
   config.cache_store = :dalli_store,
     (ENV["MEMCACHIER_SERVERS"] || "").split(","),
-    {:username => ENV["MEMCACHIER_USERNAME"],
-     :password => ENV["MEMCACHIER_PASSWORD"],
-     :failover => true,
-     :socket_timeout => 1.5,
-     :socket_failure_delay => 0.2
-  }
+    {
+      username: ENV["MEMCACHIER_USERNAME"],
+      password: ENV["MEMCACHIER_PASSWORD"],
+      failover: true,
+      socket_timeout: 1.5,
+      socket_failure_delay: 0.2
+    }
 
     ActionMailer::Base.smtp_settings = {
-      :port =>           '587',
-      :address =>        'smtp.mandrillapp.com',
-      :user_name =>      ENV['MANDRILL_USERNAME'],
-      :password =>       ENV['MANDRILL_API_KEY'],
-      :domain =>         'heroku.com',
-      :authentication => :plain
+      port:           '587',
+      address:        'smtp.mandrillapp.com',
+      user_name:      ENV['MANDRILL_USERNAME'],
+      password:       ENV['MANDRILL_API_KEY'],
+      domain:         'heroku.com',
+      authentication: :plain
     }
 
     ActionMailer::Base.delivery_method = :smtp

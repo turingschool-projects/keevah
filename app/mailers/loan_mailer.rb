@@ -13,11 +13,10 @@ class LoanMailer < ActionMailer::Base
 
   def received_money(user_id, loan_request_id, checkout_amount)
     @user = User.find_by(id: user_id)
-    email = @user.email
     @loan = get_loan_request_object_from_id(loan_request_id)
-    user_email = @loan.user.email
+    email = @loan.user.email
     @amount = checkout_amount
-      mail(to: email, subject: "You have received funding.")
+    mail(to: email, subject: "You have received funding.")
   end
 
   def get_loan_request_object_from_id(loan_request_id)
