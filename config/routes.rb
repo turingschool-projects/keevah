@@ -3,7 +3,6 @@ Rails.application.routes.draw do
 
   get 'errors/internal_server_error', to: 'errors#internal_server_error'
 
-
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   root 'home#index'
@@ -32,8 +31,8 @@ Rails.application.routes.draw do
   post 'tenants', to: 'tenants#create'
 
   resources :tenants, as: :tenant, path: '', param: :slug, except: [:destroy]
+
   get '/404', to: 'errors#not_found'
   get '/500', to: 'errors#internal_server_error'
-
   get '*path', to: 'errors#not_found'
 end
