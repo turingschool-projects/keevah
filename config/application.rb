@@ -11,18 +11,5 @@ module Keevahh
     config.serve_static_files = true
     config.assets.version = '1.1'
     config.expections_app = routes
-
-    config.action_mailer.delivery_method = :smtp
-
-    config.action_mailer.smtp_settings = {
-      address:              "smtp.mandrillapp.com",
-      port:                 "587",
-      domain:               "gmail.com",
-      user_name:            ENV['MANDRIL_USERNAME'],
-      password:             ENV['MANDRIL_API_KEY'],
-      authentication:       "plain",
-      enable_starttls_auto: true
-    }
-
   end
 end
