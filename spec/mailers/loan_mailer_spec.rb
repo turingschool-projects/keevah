@@ -32,7 +32,7 @@ RSpec.describe LoanMailer, :type => :mailer do
     checkout_loans << loan_request_1.id
     checkout_loans << loan_request_2.id
 
-    LoanMailer.lent_money(user, checkout_loans, checkout_amounts).deliver_now
+    LoanMailer.lent_money(user.id, checkout_loans, checkout_amounts).deliver_now
     result = ActionMailer::Base.deliveries.last
 
     expect(result).not_to be_nil
@@ -49,7 +49,7 @@ RSpec.describe LoanMailer, :type => :mailer do
     checkout_loans << loan_request_2.id
 
     checkout_loans.each_with_index do |loan, index|
-      LoanMailer.received_money(user, loan, checkout_amounts[index]).deliver_now
+      LoanMailer.received_money(user.id, loan, checkout_amounts[index]).deliver_now
     end
     result = ActionMailer::Base.deliveries.first
     result2 = ActionMailer::Base.deliveries.last

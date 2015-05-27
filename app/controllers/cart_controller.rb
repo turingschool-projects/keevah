@@ -47,7 +47,8 @@ class CartController < ApplicationController
   end
 
   def send_emails_to_lenders_and_borrowers
-    SendEmailJob.new.async.perform(current_user, cart.loans.keys,
+    user_id = current_user.id
+    SendEmailJob.perform_async(user_id, cart.loans.keys,
                                    cart.loans.values)
   end
 end

@@ -24,6 +24,7 @@ gem 'paperclip'
 gem 'will_paginate'
 gem 'redis-rails'
 gem 'dalli'
+gem 'sidekiq'
 
 group :development, :test do
   gem 'simplecov', require: false, group: :test
