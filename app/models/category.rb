@@ -24,8 +24,11 @@ class Category < ActiveRecord::Base
   end
 
   def loan_requests_count
-    Rails.cache.fetch("loan_request_count/" + cache_key) do
-      LoanRequestCategory.where("category_id = ?", self).count
+    if !REDIS.get("loan_requests_count/#{cache_key}")
+      REDIS.set("loan_requests_count/#{cache_key}", LoanRequestCategory.where("category_id = ?", self).count)
+      REDIS.get("loan_requests_count/#{cache_key}").to_i
+    else
+      REDIS.get("loan_requests_count/#{cache_key}").to_i
     end
   end
 end

@@ -24,6 +24,7 @@ gem 'skylight', group: :production
 gem 'paperclip'
 gem 'will_paginate'
 gem 'redis-rails'
+gem 'dalli'
 
 group :development, :test do
   gem 'simplecov', require: false, group: :test
