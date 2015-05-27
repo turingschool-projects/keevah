@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150523003605) do
+ActiveRecord::Schema.define(version: 20150527000554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 20150523003605) do
     t.string   "blurb"
     t.string   "image_url",           default: "http://www.kiva.org/img/w632/1847429.jpg"
   end
+
+  add_index "loan_requests", ["user_id"], name: "index_loan_requests_on_user_id", using: :btree
 
   create_table "loans", force: :cascade do |t|
     t.integer  "user_id"
