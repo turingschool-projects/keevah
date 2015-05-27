@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_page
-    params[:page] || 1
+    params[:page].to_s || "1"
   end
 
   private
