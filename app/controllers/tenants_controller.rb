@@ -11,7 +11,7 @@ class TenantsController < ApplicationController
   end
 
   def index
-    @tenants = Tenant.paginate(page: params[:page], per_page: 15)
+    @tenants = Tenant.paginate(page: params[:page], per_page: 6)
   end
 
   def new
@@ -29,7 +29,7 @@ class TenantsController < ApplicationController
 
   def show
     @tenant = Tenant.find_by(slug: params[:slug])
-    @loan_requests = @tenant.loan_requests.paginate(page: params[:page], per_page: 15)
+    @loan_requests = @tenant.loan_requests.paginate(page: params[:page], per_page: 6)
   end
 
   def edit
