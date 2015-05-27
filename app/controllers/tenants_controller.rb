@@ -1,10 +1,14 @@
 class TenantsController < ApplicationController
   load_and_authorize_resource
 
-  rescue_from Mongoid::Errors::NameNotFound, :with => :render_not_found
+  rescue_from NoMethodError, with: :not_found
 
   before_action :set_tenant, only: [:show, :edit, :update, :destroy]
   before_action :current_user, only: [:show, :edit, :update]
+
+  def not_found
+    redirect_to controller: "errors", action: "not_found"
+  end
 
   def index
     @tenants = Tenant.paginate(page: params[:page], per_page: 15)

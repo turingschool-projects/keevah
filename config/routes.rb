@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  get 'errors/not_found'
+  get 'errors/not_found', to: 'errors#not_found'
 
-  get 'errors/internal_server_error'
+  get 'errors/internal_server_error', to: 'errors#internal_server_error'
+
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
