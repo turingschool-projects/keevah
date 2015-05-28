@@ -25,6 +25,7 @@ gem 'will_paginate'
 gem 'redis-rails'
 gem 'dalli'
 gem 'sidekiq'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'simplecov', require: false, group: :test
