@@ -3,34 +3,32 @@
   <p>Description: <%= @category.description %></p>
   <p class="cart-button"><%= link_to 'Take me to my cart!', cart_path %></p>
 
-  <div class="pagination">
-    <%= will_paginate @loan_requests %>
-    <% @loan_requests.each do |loan_request| %>
-      <% cache loan_request do %>
-        <%= form_tag '/cart', remote: true do %>
-          <div class="loan_request">
-            <p class="loan_request_title">Title: <%= link_to "#{loan_request.title.titleize}", loan_request_path(loan_request) %></p>
-            <p><%= image_tag loan_request.image_url %>
-          <p>Borrower: <%= loan_request.user.tenant.name %>
-        <p><%= loan_request.blurb %> <%= link_to "Learn more.", loan_request_path(loan_request) %></p>
-        <p><%= "Borrowing Amount: #{number_to_currency(loan_request.borrowing_amount, precision: 0)}" %></p>
-        <p><%= "Amount Funded: #{number_to_currency(loan_request.amount_funded, precision: 0)}" %></p>
-        <p><%= "Requested by: #{loan_request.requested_by_date.strftime('%m/%d/%Y')}" %></p>
-        <p><%= "Loan Term: #{loan_request.loan_term}" %> months</p>
-        <p><%= "Repayment Rate: #{number_to_currency(loan_request.repayment_rate, precision: 0)}" %> / month</p>
-        <p><%= "Categories: #{loan_request.category_names.join(" | ")}" %></p>
-        <p><%= "Status: #{loan_request.status}" %></p>
-        <% if loan_request.status == 'open' %>
-          <%= hidden_field_tag "loan_request", loan_request.id %>
-          <%= submit_tag "Loan $25", name: "loan_request_#{loan_request.id}", class: "loan-button" %>
-        <% else %>
-          <p><em>Fully funded!</em></p>
-        <% end %>
-          </div>
-        <% end %>
+  <%= will_paginate @loan_requests %>
+  <% @loan_requests.each do |loan_request| %>
+    <% cache loan_request do %>
+      <%= form_tag '/cart', remote: true do %>
+        <div class="loan_request">
+          <p class="loan_request_title">Title: <%= link_to "#{loan_request.title.titleize}", loan_request_path(loan_request) %></p>
+          <p><%= image_tag loan_request.image_url %>
+        <p>Borrower: <%= loan_request.user.tenant.name %>
+      <p><%= loan_request.blurb %> <%= link_to "Learn more.", loan_request_path(loan_request) %></p>
+      <p><%= "Borrowing Amount: #{number_to_currency(loan_request.borrowing_amount, precision: 0)}" %></p>
+      <p><%= "Amount Funded: #{number_to_currency(loan_request.amount_funded, precision: 0)}" %></p>
+      <p><%= "Requested by: #{loan_request.requested_by_date.strftime('%m/%d/%Y')}" %></p>
+      <p><%= "Loan Term: #{loan_request.loan_term}" %> months</p>
+      <p><%= "Repayment Rate: #{number_to_currency(loan_request.repayment_rate, precision: 0)}" %> / month</p>
+      <p><%= "Categories: #{loan_request.category_names.join(" | ")}" %></p>
+      <p><%= "Status: #{loan_request.status}" %></p>
+      <% if loan_request.status == 'open' %>
+        <%= hidden_field_tag "loan_request", loan_request.id %>
+        <%= submit_tag "Loan $25", name: "loan_request_#{loan_request.id}", class: "loan-button" %>
+      <% else %>
+        <p><em>Fully funded!</em></p>
+      <% end %>
+        </div>
       <% end %>
     <% end %>
-  </div>
+  <% end %>
   <div style="clear:both"></div>
   </div>
   <div style="clear:both;"></div>
