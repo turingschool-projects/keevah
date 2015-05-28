@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to :back
     elsif user && user.tenant
-      session[:tenant_slug] = user.tenant.slug
+      session[:tenant_slug] = user.tenant_slug
       redirect_to tenants_path(session[:tenant_slug]),
                   notice: "Logged in as #{current_user.name}"
     else
