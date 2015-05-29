@@ -1,4 +1,4 @@
-<% cache("loan_requests_index/#{current_page}", expires_in: 10.minutes) do %>
+<% cache("loan_requests_index/#{current_page}", expires_in: 15.minutes) do %>
   <h2>Loan Requests</h2>
 
   <p class="note">Show</p>
@@ -10,7 +10,7 @@
 
   <%= will_paginate @loan_requests %>
   <% @loan_requests.each do |loan_request| %>
-    <% cache loan_request do %>
+    <% cache(loan_request, expires_in: 10.minutes) do %>
       <%= form_tag "/cart", remote: true do %>
         <div class="loan_request", id=<%= "loan_request_#{loan_request.id}" %>>
           <p class="loan_request_title">Title: <%= link_to "#{loan_request.title.titleize}", loan_request_path(loan_request) %></p>

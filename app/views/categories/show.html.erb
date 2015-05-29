@@ -1,11 +1,11 @@
-<% cache(@category.cache_key + current_page, expires_in: 10.minutes) do %>
+<% cache(@category.cache_key + current_page, expires_in: 15.minutes) do %>
   <h2>Category: <%= @category.name %></h2>
   <p>Description: <%= @category.description %></p>
   <p class="cart-button"><%= link_to 'Take me to my cart!', cart_path %></p>
 
   <%= will_paginate @loan_requests %>
   <% @loan_requests.each do |loan_request| %>
-    <% cache loan_request do %>
+    <% cache(loan_request, expires_in: 10.minutes) do %>
       <%= form_tag '/cart', remote: true do %>
         <div class="loan_request">
           <p class="loan_request_title">Title: <%= link_to "#{loan_request.title.titleize}", loan_request_path(loan_request) %></p>
