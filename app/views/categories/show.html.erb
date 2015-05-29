@@ -1,4 +1,4 @@
-<% cache(@category.cache_key + current_page) do %>
+<% cache(@category.cache_key + current_page, expires_in: 10.minutes) do %>
   <h2>Category: <%= @category.name %></h2>
   <p>Description: <%= @category.description %></p>
   <p class="cart-button"><%= link_to 'Take me to my cart!', cart_path %></p>
