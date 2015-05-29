@@ -27,6 +27,7 @@ class LoanRequestsController < ApplicationController
 
   def show
     @loan_request = LoanRequest.find_by("id = ?", params[:id])
+    fresh_when(@loan_request)
   end
 
   def edit
