@@ -25,4 +25,13 @@ class User < ActiveRecord::Base
   def tenant?
     tenant_id != nil
   end
+
+  def tenant_slug
+    if !REDIS.get("user_tenant_slug/#{cache_key}")
+      REDIS.set("user_tenant_slug/#{cache_key}", self.tenant.slug)
+      REDIS.get("user_tenant_slug/#{cache_key}")
+    else
+      REDIS.get("user_tenant_slug/#{cache_key}")
+    end
+  end
 end

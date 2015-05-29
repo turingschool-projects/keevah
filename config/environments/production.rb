@@ -22,7 +22,7 @@ Rails.application.configure do
       port:           '587',
       address:        'smtp.mandrillapp.com',
       user_name:      ENV['MANDRILL_USERNAME'],
-      password:       ENV['MANDRILL_API_KEY'],
+      password:       ENV['MANDRILL_APIKEY'],
       domain:         'heroku.com',
       authentication: :plain
     }
