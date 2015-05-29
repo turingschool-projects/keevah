@@ -25,7 +25,6 @@ class LoanRequest < ActiveRecord::Base
   validates :status, presence: true
 
   after_create :touch_categories
-  #after_update :touch_categories
 
   def touch_categories
     categories.each(&:touch)
